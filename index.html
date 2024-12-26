@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora de impuestos</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+
+            <form onsubmit="calcularFormulario1(event)">
+                <h1>Con dólar tarjeta 👎</h1>
+
+                <div class="tarjeta">
+
+                    <div>
+                        <label for="monto1">¿Cuánto desea invertir?</label>
+                        <input type="number" id="monto1" name="monto1" oninput="calcularFormulario1()" required min="0"> 
+                    </div>
+
+                    <div>
+                        <label for="porcentajeIva1">IVA
+                            <span class="info-icon" data-tooltip="21%"><i class="fa-solid fa-circle-info" style="color: #000000;"></i></span>
+                        </label>
+                        <input type="text" id="porcentajeIva1" readonly> 
+                    </div>
+
+                    <div>
+                        <label for="porcentajeGanancias1">Ganancias
+                            <span class="info-icon" data-tooltip="30%"><i class="fa-solid fa-circle-info" style="color: #000000;"></i></span>
+                        </label>
+                        <input type="text" id="porcentajeGanancias1" readonly> 
+                    </div>
+
+                    <div>
+                        <label for="porcentajeIngresosBrutos1">Ingresos Brutos
+                            <span class="info-icon" data-tooltip="2%"><i class="fa-solid fa-circle-info" style="color: #000000;"></i></span>
+                        </label>
+                        <input type="text" id="porcentajeIngresosBrutos1" readonly> 
+                    </div>
+
+                    <div>
+                        <label for="total1"><b>TOTAL</b></label>
+                        <input type="text" id="total1" readonly>        
+                    </div>
+
+                </div>
+            </form>
+
+            <!-- Formulario 2 -->
+            <form id="formulario2">
+                <h1>Con Merco 👍</h1>
+            
+                <div class="tarjeta">
+                    <div>
+                        <label for="monto2">¿Cuánto desea invertir?</label>
+                        <input type="number" id="monto2" name="monto2" required min="0"> 
+                    </div>
+            
+                    <div>
+                        <label for="porcentajeIva2">IVA 
+                            <span class="info-icon" data-tooltip="21%">
+                                <i class="fa-solid fa-circle-info" style="color: #000000;"></i>
+                            </span>
+                        </label>
+                        <input type="text" id="porcentajeIva2" readonly> 
+                    </div>
+            
+                    <div>
+                        <label for="porcentajeFijo2">Costo operativo
+                            <span class="info-icon" data-tooltip="El costo operativo LDC varía en función de la inversión">
+                                <i class="fa-solid fa-circle-info" style="color: #000000;"></i>
+                            </span>
+                        </label>
+                        <input type="text" id="porcentajeFijo2" readonly> 
+                    </div>
+            
+                    <div>
+                        <label for="total2"><b>TOTAL</b></label>
+                        <input type="text" id="total2" readonly> 
+                    </div>
+            
+                    <div>
+                        <button type="submit">Enviar</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

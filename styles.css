@@ -1,0 +1,394 @@
+/* *{
+    font-family: "Poppins", serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-size: 1.15rem;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    margin: 20px;
+    margin: auto;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+h1{
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+img{
+    margin: auto;
+    text-align: center;
+    display: block;
+    margin-bottom: 50px;
+}
+
+input[type="number"] {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 95%;
+}
+
+input[readonly] {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    width: 95%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+label:first-of-type{
+    padding-top: 0;
+}
+
+.total {
+    font-weight: bold;
+}
+
+form{
+    background: #f42643;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+    
+    body{
+        padding: 0 5rem;
+    }
+    
+    form{
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    img{
+        width: 400px;
+    }
+
+    input[type="number"] {
+        width: 93%;
+    }
+    
+    input[readonly] {
+        width: 93%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    img{
+        width: 300px;
+    }
+
+    input[type="number"] {
+        width: 91%;
+    }
+    
+    input[readonly] {
+        width: 91%;
+    }
+}
+
+
+button{
+    margin-top: 50px;
+    padding: .5rem 2rem;
+    background: #2e91f5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+button:hover{
+    border-radius: 25px;
+    transition-property: background;
+    transition-duration: .5s;
+    background: #146bc2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.merco, .tarjeta{
+    width: 50%;
+    padding: 5%;
+}
+
+.merco{
+    padding: 5%;
+}
+
+.tarjeta{
+    background: white;
+}
+
+.tarjeta-titulo{
+    color: black;
+}
+
+.divisor{
+    background: black;
+    width: 2px;
+    margin: 0 5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.info-icon {
+    font-size: 14px;
+    color: #555;
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+}
+.info-icon:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1;
+    opacity: 1;
+}
+.info-icon:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #000 transparent;
+    z-index: 1;
+}
+.info-icon::after, .info-icon::before {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.info-icon:hover::after, .info-icon:hover::before {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */
+
+
+
+
+
+
+
+
+
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+ }
+
+ .container{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+ }
+
+ h1{
+    font-size: 2.5rem;
+ }
+
+ .container form{
+    width: 50%;
+    padding: 5%;
+ }
+
+ .container form div{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+ }
+
+ .container form div input{
+    padding: .5rem;
+ }
+
+ .container form div label{
+    font-size: 1.5rem;
+    padding-bottom: 1.5rem;
+ }
+
+ form:last-of-type{
+    background: #f42643;
+ }
+
+
+ button{
+    margin-top: 50px;
+    padding: 1rem 3rem;
+    background: #2e91f5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    width: fit-content;
+    font-family: "Poppins", serif;
+}
+
+button:hover{
+    transition-property: background;
+    transition-duration: .5s;
+    background: #146bc2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos para los tooltips */
+.info-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.info-icon:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%; /* Para colocar el tooltip arriba del ícono */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s;
+    opacity: 1;
+    pointer-events: none; /* Evita que el mouse interactúe con el tooltip */
+}
+
+.info-icon:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 120%; /* Para el triángulo que apunta al ícono */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s;
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1000px) {
+    .container{
+        display: block;
+     }
+
+     .container form{
+        width: 100%;
+        padding: 5%;
+     }
+}
