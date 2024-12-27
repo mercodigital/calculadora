@@ -20,7 +20,7 @@
 
                     <div>
                         <label for="monto1">¿Cuánto desea invertir?</label>
-                        <input type="text" id="monto1" name="monto1" oninput="calcularFormulario1()" required> 
+                        <input type="text" id="monto1" name="monto1" oninput="formatearInputConSimbolo(this); calcularFormulario1()" required> 
                     </div>
 
                     <div>
@@ -59,7 +59,7 @@
                 <div class="tarjeta">
                     <div>
                         <label for="monto2">¿Cuánto desea invertir?</label>
-                        <input type="text" id="monto2" name="monto2" required> 
+                        <input type="text" id="monto2" name="monto2"  oninput="formatearInputConSimbolo(this); calcularFormulario2()" required> 
                     </div>
             
                     <div>
@@ -75,6 +75,7 @@
                         <label for="porcentajeFijo2">Costo operativo
                             <span class="info-icon" data-tooltip="El costo operativo LDC varía en función de la inversión">
                                 <i class="fa-solid fa-circle-info" style="color: #000000;"></i>
+                                <span id="porcentajeAplicado" class="porcentaje-texto"></span>
                             </span>
                         </label>
                         <input type="text" id="porcentajeFijo2" readonly> 
@@ -86,7 +87,7 @@
                     </div>
 
                     <label for="ahorro"><b>Ahorro con Merco ✅:</b></label>
-                    <input id="ahorro" type="text" readonly />
+                    <input id="ahorro" type="text" readonly min="0"/>
             
                     <div>
                         <a href="https://meetings.hubspot.com/fernando-velozo/rotacion?uuid=3a031766-3b4f-4429-b018-53ee7e2422b5">AGENDAR MEET</a>
@@ -95,6 +96,67 @@
             </form>
             
         </div>
+
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspectos</th>
+                    <th style="color: darkred;">Dólar Tarjeta</th>
+                    <th style="color: darkred;">Dólar MEP</th>
+                    <th style="color: green;">LDC Merco</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Costo (Click) EN USD</td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👍</div></td>
+                </tr>
+                <tr>
+                    <td>Riesgo de rechazo</td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👍</div></td>
+                </tr>
+                <tr>
+                    <td>Optimización de anuncios</td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👍</div></td>
+                </tr>
+                <tr>
+                    <td>Factura A</td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👍</div></td>
+                </tr>
+                <tr>
+                    <td>Límites diarios</td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👍</div></td>
+                </tr>
+                <tr>
+                    <td>Riesgo de SUSPENSIÓN</td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👍</div></td>
+                </tr>
+                <tr>
+                    <td>IVA e impuestos</td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👎</div></td>
+                    <td><div class="pulgar">👍</div></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <img src="comparacion.png" alt="Comparación">
+
         <script src="script.js"></script>
     </body>
 </html>

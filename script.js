@@ -1,123 +1,140 @@
-// Función para formatear inputs con "$" y redondear a dos decimales
-function formatearConSimbolo(input) {
-    let valor = input.value.replace(/[^\d.]/g, ""); // Eliminar caracteres que no sean números o punto decimal
-    if (valor.includes(".")) {
-        const [entero, decimal] = valor.split(".");
-        valor = decimal.length > 2 ? `${entero}.${decimal.slice(0, 2)}` : valor;
+// Función para formatear números con puntos y símbolo
+function formatarNumeroConSimbolo(valor) {
+    // Convertir el valor en número y asegurarse de que sea entero
+    let numero = parseInt(valor, 10);
+    if (isNaN(numero)) {
+        return ""; // Si no es un número válido, regresamos vacío
     }
-    input.value = valor ? `${parseFloat(valor).toFixed(2)} $` : ""; // Añadir "$" y limitar a dos decimales
+
+    // Formatear el número con separadores de miles
+    return numero.toLocaleString('es-AR') + '$';
 }
 
-// Función para convertir el valor del input a número
+// Obtener el valor numérico de un input, sin formato
 function obtenerValorNumerico(input) {
-    return parseFloat(input.value.replace(/[$,]/g, "")); // Quitar "$" y convertir a número
+    return parseInt(input.value.replace(/\./g, '').replace(/\$/g, '').trim(), 10) || 0;
 }
 
-// Formulario 1: IVA + Ganancias + Ingresos Brutos
-function calcularFormulario1() {
+// Función para los cálculos en el primer formulario
+function calcularFormulario1(event) {
+    event.preventDefault(); // Para prevenir el envío del formulario
+
     const monto1Input = document.getElementById("monto1");
     const monto1 = obtenerValorNumerico(monto1Input);
 
-    if (isNaN(monto1) || monto1 <= 0) {
+    // Si el monto es menor o igual a cero, salimos
+    if (monto1 <= 0) {
         document.getElementById("porcentajeIva1").value = "";
         document.getElementById("porcentajeGanancias1").value = "";
         document.getElementById("porcentajeIngresosBrutos1").value = "";
         document.getElementById("total1").value = "";
-        return 0;  // Retornar 0 si el monto es inválido
+        document.getElementById("porcentajeAplicado").textContent = ""; // Limpiar el porcentaje
+
+        return;
     }
 
+    // Calcular IVA, ganancias e ingresos brutos
     const iva = monto1 * 0.21;
     const ganancias = monto1 * 0.30;
     const ingresosBrutos = monto1 * 0.02;
+
+    // Calcular total
     const total = monto1 + iva + ganancias + ingresosBrutos;
 
-    document.getElementById("porcentajeIva1").value = `${iva.toFixed(2)} $`;
-    document.getElementById("porcentajeGanancias1").value = `${ganancias.toFixed(2)} $`;
-    document.getElementById("porcentajeIngresosBrutos1").value = `${ingresosBrutos.toFixed(2)} $`;
-    document.getElementById("total1").value = `${total.toFixed(2)} $`;
-
-    return total;  // Devolver el total calculado
+    // Mostrar los resultados en los inputs correspondientes
+    document.getElementById("porcentajeIva1").value = formatarNumeroConSimbolo(iva);
+    document.getElementById("porcentajeGanancias1").value = formatarNumeroConSimbolo(ganancias);
+    document.getElementById("porcentajeIngresosBrutos1").value = formatarNumeroConSimbolo(ingresosBrutos);
+    document.getElementById("total1").value = formatarNumeroConSimbolo(total);
 }
 
-// Formulario 2: IVA + Costo Fijo
-document.addEventListener('DOMContentLoaded', function () {
-    const montoInput = document.getElementById("monto2");
-    const ivaInput = document.getElementById("porcentajeIva2");
-    const costoFijoInput = document.getElementById("porcentajeFijo2");
-    const totalInput = document.getElementById("total2");
-    const ahorroInput = document.getElementById("ahorro"); // Campo para mostrar el ahorro
+// Función para los cálculos en el segundo formulario con costos operativos dinámicos
+function calcularFormulario2() {
+    const monto2Input = document.getElementById("monto2");
+    const monto2 = obtenerValorNumerico(monto2Input);
 
-    // Función para calcular los valores y el ahorro en tiempo real
-    function calcularValores() {
-        const monto = obtenerValorNumerico(montoInput);
-
-        if (isNaN(monto) || monto <= 0) {
-            ivaInput.value = "";
-            costoFijoInput.value = "";
-            totalInput.value = "";
-            ahorroInput.value = "";
-            return;
-        }
-
-        // Opción 2: IVA + Costo Fijo
-        const iva = monto * 0.21;
-        let costoFijo = 0;
-
-        if (monto >= 500000 && monto < 1000000) {
-            costoFijo = monto * 0.30;
-        } else if (monto >= 1000000 && monto < 5000000) {
-            costoFijo = monto * 0.23;
-        } else if (monto >= 5000000 && monto < 10000000) {
-            costoFijo = monto * 0.20;
-        } else if (monto >= 10000000 && monto < 15000000) {
-            costoFijo = monto * 0.19;
-        } else if (monto >= 15000000 && monto < 50000000) {
-            costoFijo = monto * 0.16;
-        } else if (monto >= 50000000 && monto <= 150000000) {
-            costoFijo = monto * 0.15;
-        }
-
-        const totalFormulario2 = monto + iva + costoFijo;
-
-        // Opción 1: IVA + Ganancias + Ingresos Brutos
-        const totalFormulario1 = calcularFormulario1();  // Esto te dará el total de Formulario 1
-
-        // Calcular la diferencia o ahorro
-        const diferencia = totalFormulario1 - totalFormulario2;
-
-        // Mostrar resultados en los campos
-        ivaInput.value = `${iva.toFixed(2)} $`;
-        costoFijoInput.value = `${costoFijo.toFixed(2)} $`;
-        totalInput.value = `${totalFormulario2.toFixed(2)} $`;
-        ahorroInput.value = diferencia > 0 ? `${diferencia.toFixed(2)} $` : `0.00 $`; // Muestra la diferencia como ahorro
+    // Si el monto es menor o igual a cero, salimos
+    if (monto2 <= 0) {
+        document.getElementById("porcentajeIva2").value = "";
+        document.getElementById("porcentajeFijo2").value = "";
+        document.getElementById("total2").value = "";
+        document.getElementById("ahorro").value = "";
+        return;
     }
 
-    // Actualizar símbolo en tiempo real
-    montoInput.addEventListener("input", function () {
-        formatearConSimbolo(montoInput);  // Formatear el valor con el símbolo "$"
-        calcularValores();  // Calcular los valores en tiempo real
-    });
+    // Calcular IVA
+    const iva = monto2 * 0.21;
+    
+    // Determinar porcentaje de costo operativo en base al monto
+    let porcentajeCostoOperativo = 0;
+      let porcentajeTexto = ""
 
-    // Lógica del formulario
-    const formulario2 = document.getElementById("formulario2");
-    formulario2.addEventListener("submit", (event) => {
-        event.preventDefault();
+    if (monto2 >= 500000 && monto2 < 1000000) {
+        porcentajeCostoOperativo = 0.30; // 30% para montos entre 500000 y 1000000
+        porcentajeTexto = "(+30%)";
+    } else if (monto2 >= 1000000 && monto2 < 5000000) {
+        porcentajeCostoOperativo = 0.23; // 23% para montos entre 1000000 y 5000000
+        porcentajeTexto = "(+23%)";
+    } else if (monto2 >= 5000000 && monto2 < 10000000) {
+        porcentajeCostoOperativo = 0.20; // 20% para montos entre 5000000 y 10000000
+        porcentajeTexto = "(+20%)";
+    } else if (monto2 >= 10000000 && monto2 < 15000000) {
+        porcentajeCostoOperativo = 0.19; // 19% para montos entre 10000000 y 15000000
+        porcentajeTexto = "(+19%)";
+    } else if (monto2 >= 15000000 && monto2 < 50000000) {
+        porcentajeCostoOperativo = 0.16; // 16% para montos entre 15000000 y 50000000
+        porcentajeTexto = "(+16%)";
+    } else if (monto2 >= 50000000 && monto2 < 150000000) {
+        porcentajeCostoOperativo = 0.15; // 15% para montos entre 50000000 y 150000000
+        porcentajeTexto = "(+15%)";
+    } else if (monto2 > 50000000) {
+        porcentajeCostoOperativo = 0.15; // 15% para montos entre 50000000 y 150000000
+        porcentajeTexto = "(+0%)";
+    }
 
-        const monto = obtenerValorNumerico(montoInput);
-        const total = obtenerValorNumerico(totalInput);
+    // Mostrar el porcentaje aplicado
+    document.getElementById("porcentajeAplicado").textContent = `${porcentajeTexto}`;
 
-        if (isNaN(monto) || monto <= 0) {
-            alert("Por favor, ingrese un monto válido.");
-            return;
-        }
+    // Calcular costo operativo
+    const costoOperativo = monto2 * porcentajeCostoOperativo;
 
-        console.log("Monto ingresado:", monto);
-        console.log("Total calculado:", total);
-    });
-});
+    // Calcular total y ahorro
+    const total = monto2 + iva + costoOperativo;
+    
+    // Obtener el total del primer formulario
+    const total1 = obtenerValorNumerico(document.getElementById("total1"));
+    
+    // Calcular ahorro como diferencia entre total1 y total2
+    let ahorro = total1 - total;
 
-// Evento para Formulario 1 en tiempo real
-document.getElementById("monto1").addEventListener("input", function () {
-    formatearConSimbolo(this); // Formatear el input con el símbolo "$"
-    calcularFormulario1(); // Actualizar el cálculo para Formulario 1
-});
+    // Si el ahorro es negativo, lo dejamos en 0
+    if (ahorro < 0) {
+        ahorro = 0;
+    }
+
+    // Mostrar los resultados
+    document.getElementById("porcentajeIva2").value = formatarNumeroConSimbolo(iva);
+    document.getElementById("porcentajeFijo2").value = formatarNumeroConSimbolo(costoOperativo);
+    document.getElementById("total2").value = formatarNumeroConSimbolo(total);
+    document.getElementById("ahorro").value = formatarNumeroConSimbolo(ahorro);
+}
+
+// Función que formatea los números dentro de los inputs cuando se escribe
+function formatearInputConSimbolo(input) {
+    let valor = input.value.replace(/\./g, ''); // Eliminar puntos si los hay
+    valor = valor.replace(/\$/g, ''); // Eliminar signo '$' si existe
+
+    if (isNaN(valor) || valor === "") {
+        input.value = "";
+        return;
+    }
+
+    // Añadir puntos de separador de miles
+    const valorFormateado = parseInt(valor).toLocaleString('es-AR') + '$';
+    input.value = valorFormateado;
+
+    // Llamar a calcularFormulario1 para que se realicen los cálculos
+    if (input.id === 'monto1') {
+        calcularFormulario1(event);
+    }
+}
