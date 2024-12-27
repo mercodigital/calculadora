@@ -274,7 +274,7 @@ button:hover{
  }
 
 
- button{
+ a{
     margin-top: 50px;
     padding: 1rem 3rem;
     background: #2e91f5;
@@ -285,9 +285,10 @@ button:hover{
     font-size: 1.5rem;
     width: fit-content;
     font-family: "Poppins", serif;
+    text-decoration: none;
 }
 
-button:hover{
+a:hover{
     transition-property: background;
     transition-duration: .5s;
     background: #146bc2;
