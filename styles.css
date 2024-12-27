@@ -464,7 +464,7 @@ tr:hover {
     font-size: 2rem;
 }
 
-img{
+.comparacion{
     width: 70%;
     margin: auto;
     display: flex;
@@ -474,7 +474,7 @@ img{
 
 
 @media screen and (max-width: 1299px) {
-    img{
+    .comparacion{
         width: 90%;
     }
 
@@ -488,4 +488,72 @@ img{
 video{
     width: 100%;
     height: auto;
+}
+
+
+
+
+
+
+
+
+.btnWhatsApp{
+    position: fixed;
+    bottom: 5%; 
+    right: 20px; 
+    transform: translateY(-50%); 
+    background: #49C858;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+    z-index: 300;
+    border: 1px solid white;
+}
+
+
+
+
+
+
+
+
+
+
+header{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    height: auto;
+    background: black;
+    padding: 0 5%;
+} 
+
+header ul{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+header ul li:nth-child(2){
+    padding: 1rem 3rem;
+}
+
+header ul li img{
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    width: 100px; 
+}
+
+header ul li:first-child img{
+    width: 500px;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    header ul li:nth-child(2){
+        padding: 1rem 1rem;
+    }
 }

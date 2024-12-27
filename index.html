@@ -11,89 +11,83 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
     </head>
     <body>
+
+        <header>
+            <ul>
+                <li><img src="https://merco.agency/hs-fs/hubfs/Grupo%2019844.png?width=454&height=35&name=Grupo%2019844.png" alt="Merco"></li>
+            <li><img src="https://www.adgoritmo.com/wp-content/uploads/2024/02/adg-google-partner-premier2024.png" alt="Google Partner"></li>
+            <li><img src="https://bangoinvestor.com/wp-content/uploads/2022/04/Meta-Badge.webp" alt="Meta Business Partner"></li>
+            </ul>
+        </header>
         <div class="container">
 
             <form onsubmit="calcularFormulario1(event)">
                 <h1>Con dólar tarjeta 👎</h1>
-
                 <div class="tarjeta">
-
                     <div>
                         <label for="monto1">¿Cuánto desea invertir?</label>
-                        <input type="text" id="monto1" name="monto1" oninput="formatearInputConSimbolo(this); calcularFormulario1()" required> 
+                        <input type="text" id="monto1" name="monto1" oninput="formatearInputConSimbolo(this); calcularAmbosFormularios()" required>
                     </div>
-
                     <div>
                         <label for="porcentajeIva1">IVA
                             <span class="info-icon" data-tooltip="21%"><i class="fa-solid fa-circle-info" style="color: #000000;"></i></span>
                         </label>
-                        <input type="text" id="porcentajeIva1" readonly> 
+                        <input type="text" id="porcentajeIva1" readonly>
                     </div>
-
                     <div>
                         <label for="porcentajeGanancias1">Ganancias
                             <span class="info-icon" data-tooltip="30%"><i class="fa-solid fa-circle-info" style="color: #000000;"></i></span>
                         </label>
-                        <input type="text" id="porcentajeGanancias1" readonly> 
+                        <input type="text" id="porcentajeGanancias1" readonly>
                     </div>
-
                     <div>
                         <label for="porcentajeIngresosBrutos1">Ingresos Brutos
                             <span class="info-icon" data-tooltip="2%"><i class="fa-solid fa-circle-info" style="color: #000000;"></i></span>
                         </label>
-                        <input type="text" id="porcentajeIngresosBrutos1" readonly> 
+                        <input type="text" id="porcentajeIngresosBrutos1" readonly>
                     </div>
-
                     <div>
                         <label for="total1"><b>TOTAL</b></label>
-                        <input type="text" id="total1" readonly>        
+                        <input type="text" id="total1" readonly>
                     </div>
-
                 </div>
             </form>
-
-            <!-- Formulario 2 -->
-            <form id="formulario2">
+            
+            <form id="formulario2" onsubmit="calcularAmbosFormularios()">
                 <h1>Con Merco 👍</h1>
-            
                 <div class="tarjeta">
-                    <div>
-                        <label for="monto2">¿Cuánto desea invertir?</label>
-                        <input type="text" id="monto2" name="monto2"  oninput="formatearInputConSimbolo(this); calcularFormulario2()" required> 
-                    </div>
-            
                     <div>
                         <label for="porcentajeIva2">IVA 
                             <span class="info-icon" data-tooltip="21%">
                                 <i class="fa-solid fa-circle-info" style="color: #000000;"></i>
                             </span>
                         </label>
-                        <input type="text" id="porcentajeIva2" readonly> 
+                        <input type="text" id="porcentajeIva2" readonly>
                     </div>
-            
                     <div>
                         <label for="porcentajeFijo2">Costo operativo
                             <span class="info-icon" data-tooltip="El costo operativo LDC varía en función de la inversión">
                                 <i class="fa-solid fa-circle-info" style="color: #000000;"></i>
-                                <span id="porcentajeAplicado" class="porcentaje-texto"></span>
                             </span>
+
+                            <span id="porcentajeFijo2Porcentaje" style="display: inline-block; font-size: 0.9em; margin-left: 10px;"></span>
+
                         </label>
-                        <input type="text" id="porcentajeFijo2" readonly> 
+                        <input type="text" id="porcentajeFijo2" readonly>
+                
                     </div>
-            
                     <div>
                         <label for="total2"><b>TOTAL</b></label>
-                        <input type="text" id="total2" readonly> 
+                        <input type="text" id="total2" readonly>
                     </div>
-
                     <label for="ahorro"><b>Ahorro con Merco ✅:</b></label>
-                    <input id="ahorro" type="text" readonly min="0"/>
-            
+                    <input id="ahorro" type="text" readonly />
                     <div>
                         <a href="https://meetings.hubspot.com/fernando-velozo/rotacion?uuid=3a031766-3b4f-4429-b018-53ee7e2422b5">AGENDAR MEET</a>
                     </div>
                 </div>
             </form>
+            
             
         </div>
 
@@ -161,7 +155,9 @@
             </video>
         </div>
 
-        <img src="comparacion.png" alt="Comparación" controls>
+        <img class="comparacion" src="comparacion.png" alt="Comparación" controls>
+
+        <button class="btnWhatsApp"><i class="fa-brands fa-whatsapp" style="color: #ffffff;"></i></button>
 
         <script src="script.js"></script>
     </body>
