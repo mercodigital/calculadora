@@ -24,24 +24,40 @@ function calcularAmbosFormularios() {
     // Determinar costo operativo
     let costoOperativo = 0;
     let porcentajeCosto = '';
+    
     if (monto1 >= 500000 && monto1 < 1000000) {
-        costoOperativo = monto1 * 0.30;
-        porcentajeCosto = '(+30%)';
-    } else if (monto1 >= 1000000 && monto1 < 5000000) {
-        costoOperativo = monto1 * 0.23;
-        porcentajeCosto = '(+23%)';
-    } else if (monto1 >= 5000000 && monto1 < 10000000) {
         costoOperativo = monto1 * 0.20;
         porcentajeCosto = '(+20%)';
-    } else if (monto1 >= 10000000 && monto1 < 15000000) {
-        costoOperativo = monto1 * 0.19;
-        porcentajeCosto = '(+19%)';
-    } else if (monto1 >= 15000000 && monto1 < 50000000) {
+    } 
+    
+    else if (monto1 >= 1000000 && monto1 < 5000000) {
+        costoOperativo = monto1 * 0.18;
+        porcentajeCosto = '(+18%)';
+    } 
+    
+    else if (monto1 >= 5000000 && monto1 < 10000000) {
         costoOperativo = monto1 * 0.16;
         porcentajeCosto = '(+16%)';
-    } else if (monto1 >= 50000000) {
+    } 
+    
+    else if (monto1 >= 10000000 && monto1 < 15000000) {
         costoOperativo = monto1 * 0.15;
         porcentajeCosto = '(+15%)';
+    } 
+    
+    else if (monto1 >= 15000000 && monto1 < 50000000) {
+        costoOperativo = monto1 * 0.14;
+        porcentajeCosto = '(+14%)';
+    } 
+
+    else if (monto1 >= 50000000 && monto1 < 150000000) {
+        costoOperativo = monto1 * 0.13;
+        porcentajeCosto = '(+13%)';
+    } 
+    
+    else if (monto1 > 150000000) {
+        costoOperativo = monto1 * 0.125;
+        porcentajeCosto = '(+12,5%)';
     }
 
     const total2 = monto1 + iva2 + costoOperativo;
